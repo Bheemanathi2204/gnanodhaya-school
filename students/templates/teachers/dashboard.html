@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+{% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            <div class="message success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+
+<div class="teacher-dashboard-page">
+
+    <h2 class="dashboard-title">👩‍🏫 Teacher Dashboard</h2>
+    <p class="dashboard-subtitle">Welcome! Manage your class activities</p>
+
+    <div class="dashboard-cards">
+
+        <a href="{% url 'teacher_add_homework' %}" class="dashboard-card">
+            <div class="card-icon">📘</div>
+            <h3>Add Homework</h3>
+            <p>Assign class-wise homework</p>
+        </a>
+
+        <a href="{% url 'teacher_mark_attendance' %}" class="dashboard-card">
+            <div class="card-icon">📝</div>
+            <h3>Attendance</h3>
+            <p>Mark class attendance</p>
+        </a>
+
+        
+
+        <a href="{% url 'teacher_marks' %}" class="dashboard-card">
+            <div class="card-icon">📊</div>
+            <h3>Marks</h3>
+            <p>Enter / Edit student marks</p>
+        </a>
+
+
+        <a href="{% url 'logout' %}" class="dashboard-card logout">
+            <div class="card-icon">🚪</div>
+            <h3>Logout</h3>
+            <p>Sign out safely</p>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

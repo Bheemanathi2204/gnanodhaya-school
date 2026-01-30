@@ -1,0 +1,30 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<h2>Exam Timetable</h2>
+
+<table>
+    <tr>
+        <th>Exam</th>
+        <th>Date</th>
+        <th>Day</th>
+        <th>Subject</th>
+        <th>Time</th>
+    </tr>
+
+    {% for t in timetables %}
+    <tr>
+        <td>{{ t.exam_name }}</td>
+        <td>{{ t.exam_date }}</td>
+        <td>{{ t.day }}</td>
+        <td>{{ t.subject }}</td>
+        <td>{{ t.time }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No exam timetable available</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="marks-page">
+  <div class="card marks-card">
+
+    <h2>{{ exam_name }} Marks</h2>
+
+    {% if marks_list %}
+
+    <!-- ================= SA-1 / SA-2 FORMAT ================= -->
+    {% if exam_name == "SA-1" or exam_name == "SA-2" %}
+
+    <div class="marks-table-wrapper">
+      <table class="marks-table">
+        <tr>
+          <th>Subject</th>
+          <th>FA (Total)</th>
+          <th>{{ exam_name }}</th>
+          <th>Total</th>
+        </tr>
+
+        {% for m in marks_list %}
+        <tr>
+          <td>{{ m.subject }}</td>
+          <td>{{ m.fa_total }}</td>
+          <td>{{ m.marks }}</td>
+          <td>{{ m.fa_total|add:m.marks }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <!-- ================= FA-1 / FA-2 / FA-3 / FA-4 FORMAT ================= -->
+    {% else %}
+
+    <div class="marks-table-wrapper">
+      <table class="marks-table">
+        <tr>
+          <th>Subject</th>
+          <th>Marks</th>
+        </tr>
+
+        {% for m in marks_list %}
+        <tr>
+          <td>{{ m.subject }}</td>
+          <td>{{ m.marks }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    {% endif %}
+
+    <hr>
+
+    <!-- ================= COMMON SUMMARY ================= -->
+    <div class="marks-summary">
+      <p><strong>Total Marks:</strong> {{ total }}</p>
+      <p><strong>Percentage:</strong> {{ percentage }}%</p>
+      <p><strong>Grade:</strong> {{ grade }}</p>
+    </div>
+
+    {% else %}
+      <p>No marks available for this exam.</p>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

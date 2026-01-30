@@ -1,0 +1,32 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="login-page-bg">
+    <div class="login-page">
+        <div class="login-card">
+            <div style="text-align:center; margin-bottom:15px;">
+                <img src="{% static SCHOOL_LOGO %}" alt="School Logo"
+                style="height:70px; width:auto;">
+            </div>
+            <h2>Student Login</h2>
+
+            {% if error %}
+                <p class="login-error">{{ error }}</p>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    <div>
+</div>
+{% endblock %}

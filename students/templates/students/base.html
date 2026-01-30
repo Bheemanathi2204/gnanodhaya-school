@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ SCHOOL_NAME }}</title>
+    {% load static %}
+    <!-- CSS file -->
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+    <div style="display:flex; align-items:center; gap:12px;">
+        <img src="{% static SCHOOL_LOGO %}" alt="School Logo" class="school-logo"
+            style="height:50px; width:auto;">
+        <h2>{{ SCHOOL_NAME }}</h2>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div class="nav-left">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'profile' %}">Student Profile</a>
+            <a href="{% url 'attendance' %}" class="nav-btn">Attendance</a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Timetable ▾</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'homework' %}">Homework</a>
+                    <a href="{% url 'exam_timetable' %}">Exam Timetable</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Marks ▾</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'marks_by_exam' 'FA-1' %}">FA-1</a>
+                    <a href="{% url 'marks_by_exam' 'FA-2' %}">FA-2</a>
+                    <a href="{% url 'marks_by_exam' 'FA-3' %}">FA-3</a>
+                    <a href="{% url 'marks_by_exam' 'FA-4' %}">FA-4</a>
+                    <a href="{% url 'marks_by_exam' 'SA-1' %}">SA-1</a>
+                    <a href="{% url 'marks_by_exam' 'SA-2' %}">SA-2</a>
+                </div>
+            </div>
+        </div>
+            
+        <div class="nav-right">
+            <form method="post" action="{% url 'logout' %}" style="margin:0;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </nav>
+
+    <hr>
+
+    <!-- Page content will come here -->
+    {% block content %}
+        <a href="/add-marks/">Add Marks</a> |
+    {% endblock %}
+
+    <script>
+    function toggleMenu() {
+        document.querySelector('.navbar').classList.toggle('active');
+    }
+    </script> 
+</body>
+</html>

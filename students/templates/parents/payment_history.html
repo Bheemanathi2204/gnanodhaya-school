@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment History</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+
+<div class="parent-dashboard">
+
+    <div class="parent-header">
+        <h1>📄 Payment History</h1>
+        <p>{{ student.user.username }} – Exam Fee Payments</p>
+    </div>
+
+    <div class="parent-container">
+
+        {% if payments %}
+        <table class="payment-table">
+            <tr>
+                <th>Date</th>
+                <th>Payment ID</th>
+                <th>Amount Paid</th>
+                <th>Status</th>
+                <th>Receipt</th>
+            </tr>
+
+            {% for p in payments %}
+            <tr>
+                <td>{{ p.paid_on|date:"d M Y H:i" }}</td>
+                <td>{{ p.payment_id }}</td>
+                <td>₹ {{ p.amount }}</td>
+                <td>{{ p.status }}</td>
+                <td>
+                    <a href="{% url 'payment_receipt' p.id %}">
+                        Download
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No payments made yet.</p>
+        {% endif %}
+
+        <br>
+        <a href="{% url 'parent_dashboard' %}">⬅ Back to Dashboard</a>
+
+    </div>
+</div>
+
+</body>
+</html>

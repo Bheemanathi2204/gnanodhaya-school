@@ -1,0 +1,36 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="hero-section">
+    <div class="hero-content">
+        <!-- ✅ STEP 4: Dynamic school name -->
+        <h1>Welcome to {{ SCHOOL_NAME }}</h1>
+        <p>
+            We focus on academic excellence, character development,
+            and holistic growth of every student.
+        </p>
+    </div>
+</div>
+
+<div class="info-cards">
+    <div class="card">
+        <h3>📍 Location</h3>
+        <!-- ✅ STEP 4 -->
+        <p>{{ SCHOOL_LOCATION }}</p>
+    </div>
+
+    <div class="card">
+        <h3>👩‍🏫 Principal</h3>
+        <!-- ✅ STEP 4 -->
+        <p>{{ SCHOOL_PRINCIPAL }}</p>
+    </div>
+
+    <div class="card">
+        <h3>🎓 Vision</h3>
+        <p>Providing quality education with strong values and discipline.</p>
+    </div>
+</div>
+
+{% endblock %}

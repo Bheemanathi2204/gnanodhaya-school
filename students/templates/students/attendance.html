@@ -1,0 +1,71 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="attendance-page">
+  <h2>My Attendance</h2>
+
+  <h2 style="margin-top:40px;">Monthly Attendance</h2>
+
+  {% if monthly_attendance %}
+  <table>
+      <tr>
+          <th>Month</th>
+          <th>Total Days</th>
+          <th>Present Days</th>
+      </tr>
+      {% for m in monthly_attendance %}
+      <tr>
+          <td>{{ m.month|date:"F Y" }}</td>
+          <td>{{ m.total_days }}</td>
+          <td>{{ m.present_days }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p style="text-align:center;">No monthly attendance data available.</p>
+  {% endif %}
+
+
+  <h2>Daily Attendance</h2>
+  <div class="summary-container">
+    <div class="summary-box total">
+      <p>Total Days</p>
+      <h3>{{ total_days }}</h3>
+    </div>
+
+    <div class="summary-box present">
+      <p>Present</p>
+      <h3>{{ present_days }}</h3>
+    </div>
+
+    <div class="summary-box absent">
+      <p>Absent</p>
+      <h3>{{ absent_days }}</h3>
+    </div>
+  </div>
+
+  <table class="attendance-table">
+    <tr>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+
+    {% for a in attendance %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td class="{% if a.status == 'Present' %}present-text{% else %}absent-text{% endif %}">
+            {{ a.status }}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="2">No attendance records</td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% load static %}
+
+<h2 class="page-title">📊 Enter Student Marks</h2>
+
+<link rel="stylesheet" href="{% static 'students/style.css' %}">
+
+<div class="filter-card">
+  <form method="get">
+    <div class="filter-grid">
+      <input type="text" name="class" placeholder="Class" value="{{ class_name }}" required>
+      <input type="text" name="section" placeholder="Section" value="{{ section }}" required>
+      <input type="text" name="subject" placeholder="Subject" value="{{ subject }}" required>
+      <input type="text" name="exam_name" placeholder="Exam (FA-1)" value="{{ exam_name }}" required>
+    </div>
+
+    <button type="submit" name="load" class="btn-primary">
+      🔍 Load Students
+    </button>
+  </form>
+</div>
+
+{% if students %}
+<hr>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="class" value="{{ class_name }}">
+  <input type="hidden" name="section" value="{{ section }}">
+  <input type="hidden" name="subject" value="{{ subject }}">
+  <input type="hidden" name="exam_name" value="{{ exam_name }}">
+
+  <div class="table-card">
+    <table class="marks-table">
+    <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Student Name</th>
+            <th>Marks</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <!-- Roll Number -->
+            <td>{{ student.roll_number }}</td>
+
+            <!-- Student Name -->
+            <td>{{ student.user.get_full_name|default:student.user.username }}</td>
+
+            <!-- Marks -->
+            <td>
+                <input type="number"
+                       name="marks_{{ student.id }}"
+                       value="{{ marks_map.student_id }}"
+                       min="0"
+                       class="marks-input">
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    <button type="submit" class="btn-success">
+      💾 Save Marks
+    </button>
+  </div>
+</form>
+{% endif %}
+
+
+

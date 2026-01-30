@@ -1,0 +1,42 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="profile-avatar">
+    {{ user.last_name|slice:":1" }}
+</div>
+<div class="profile-box">
+    <h2>Student Profile</h2>
+
+    <p>
+        <strong>Username</strong>
+        <span>{{ user.username }}</span>
+    </p>
+
+    <p>
+        <strong>Full Name</strong>
+        <span>{{ user.first_name }} {{ user.last_name }}</span>
+    </p>
+
+    <p>
+        <strong>Email</strong>
+        <span>{{ user.email }}</span>
+    </p>
+
+    <p>
+        <strong>Roll Number</strong>
+        <span>{{ profile.roll_number }}</span>
+    </p>
+
+    <p>
+        <strong>Class</strong>
+        <span>{{ profile.student_class }}</span>
+    </p>
+
+    <p>
+        <strong>Section</strong>
+        <span>{{ profile.section }}</span>
+    </p>
+
+    <a href="{% url 'edit_profile' %}" class="edit-btn">Edit Profile</a>
+</div>
+{% endblock %}

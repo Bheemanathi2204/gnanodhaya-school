@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Fee Payment</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+
+<div class="parent-dashboard">
+
+    <div class="parent-header">
+        <h1>💳 Exam Fee Payment</h1>
+        <p>Dummy Payment Gateway (No real money)</p>
+    </div>
+
+    <div class="parent-container">
+
+        <div class="parent-fee-card">
+            <h3>Student: {{ student.user.username }}</h3>
+
+            <div class="parent-fee-amount">
+                ₹ {{ amount }}
+            </div>
+
+            <p>This is a dummy payment for project purpose.</p>
+
+            <form method="post" action="#">
+                {% csrf_token %}
+                <button class="parent-pay-btn">
+                    Confirm Payment
+                </button>
+            </form>
+
+        </div>
+
+        <a href="{% url 'parent_dashboard' %}" class="parent-action-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

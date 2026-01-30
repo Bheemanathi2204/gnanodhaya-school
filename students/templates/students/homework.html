@@ -1,0 +1,40 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="homework-page">
+
+    <h2 class="page-title">📘 Homework</h2>
+
+    {% for hw in homeworks %}
+
+        {% ifchanged hw.date %}
+            {% if not forloop.first %}
+                </div> <!-- CLOSE PREVIOUS DATE BOX -->
+            {% endif %}
+
+            <div class="homework-box">
+                <div class="homework-date">
+                    {{ hw.date|date:"F d, Y" }}
+                </div>
+        {% endifchanged %}
+
+        <!-- SUBJECT + DETAILS (VERTICAL) -->
+        <div class="homework-row">
+            <div class="homework-left">
+                <div class="homework-subject">{{ hw.subject }}</div>
+                <div class="homework-details">{{ hw.details }}</div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    {% if homeworks %}
+        </div> <!-- CLOSE LAST DATE BOX -->
+    {% else %}
+        <p class="no-data">No homework assigned.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

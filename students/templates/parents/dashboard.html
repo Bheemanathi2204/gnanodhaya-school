@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parent Dashboard</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+    
+<body>
+
+<div class="parent-dashboard">
+
+    <!-- HEADER -->
+    <div class="parent-header">
+        <div class="header-left">
+            <h1>👨‍👩‍👧 Parent Dashboard</h1>
+            <p>Monitor your child's payment activities</p>
+        </div>
+
+        <div class="header-right">
+            <a href="{% url 'logout' %}" class="logout-top-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="parent-container">
+
+        <!-- STUDENT DETAILS -->
+        <div class="parent-student-card">
+            <h3>🎓 Student Details</h3>
+
+            <div class="parent-info-grid">
+                <div class="parent-info-item">
+                    <span>Student Name</span>
+                    <strong>{{ student.user.username }}</strong>
+                </div>
+
+                <div class="parent-info-item">
+                    <span>Class</span>
+                    <strong>{{ student.student_class }}</strong>
+                </div>
+
+                <div class="parent-info-item">
+                    <span>Section</span>
+                    <strong>{{ student.section }}</strong>
+                </div>
+
+                <div class="parent-info-item">
+                    <span>Roll Number</span>
+                    <strong>{{ student.roll_number }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAM FEE -->
+    <div class="parent-fee-card">
+
+        <h3 class="fee-title">💳 Payment Details</h3>
+
+    <!-- Fee Summary -->
+        <div class="fee-summary">
+            <div class="fee-box">
+                <span>Total Fee</span>
+                <strong>₹ {{ total_fee }}</strong>
+            </div>
+
+        <div class="fee-box">
+            <span>Paid</span>
+            <strong class="paid">₹ {{ paid_amount }}</strong>
+        </div>
+
+        <div class="fee-box">
+            <span>Remaining</span>
+            <strong class="remaining">₹ {{ remaining_amount }}</strong>
+        </div>
+    </div>
+
+    {% if remaining_amount > 0 %}
+    <form method="post" action="{% url 'dummy_pay_exam_fee' %}" class="payment-form">
+        {% csrf_token %}
+
+        <input
+            type="number"
+            name="pay_amount"
+            id="payAmount"
+            placeholder="Enter amount"
+            min="1"
+            max="{{ remaining_amount }}"
+            data-max="{{ remaining_amount }}"
+            oninput="checkAmount()"
+            required
+        >
+
+        <button type="submit" id="payBtn" disabled>
+            Pay Now
+        </button>
+    </form>
+
+    <div class="payment-actions">
+        <span class="status pending">Pending</span>
+
+        <a href="{% url 'payment_history' %}" class="history-btn">
+            📄 Payment History
+        </a>
+    </div>
+
+    {% else %}
+        <span class="status paid">Paid</span>
+        <p class="thank-you">Thank you for full payment 🎉</p>
+    {% endif %}
+
+
+</div>
+
+<!-- ✅ SCRIPT MUST BE AT BOTTOM -->
+<script>
+function checkAmount() {
+    const amountInput = document.getElementById("payAmount");
+    const payBtn = document.getElementById("payBtn");
+
+    if (!amountInput || !payBtn) return;
+
+    const value = Number(amountInput.value);
+    const maxAmount = Number(amountInput.dataset.max);
+
+    if (value > 0 && value <= maxAmount) {
+        payBtn.disabled = false;
+    } else {
+        payBtn.disabled = true;
+    }
+}
+
+// Extra safety before submit
+function validateBeforeSubmit() {
+    const amountInput = document.getElementById("payAmount");
+    const value = Number(amountInput.value);
+    const maxAmount = Number(amountInput.dataset.max);
+
+    if (value <= 0 || value > maxAmount) {
+        alert("Please enter a valid amount");
+        return false;
+    }
+    return true;
+}
+</script>
+
+</body>
+</html>

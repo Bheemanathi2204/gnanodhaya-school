@@ -1,0 +1,59 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="contact-hero">
+    <div class="contact-overlay">
+        <h2 class="page-title">Contact Us</h2>
+        
+        <div class="contact-card">
+
+            <div class="contact-item">
+                <span class="icon">🏠</span>
+                <span class="text">
+                    <strong>School Name:</strong> {{ SCHOOL_NAME }}
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <span class="icon">📍</span>
+                <span class="text">
+                    <strong>Address:</strong> {{ SCHOOL_LOCATION }}
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <span class="text">
+                    <strong>Phone:</strong> {{ SCHOOL_PHONE }}
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <span class="icon">✉️</span>
+                <span class="text">
+                    <strong>Email:</strong> {{ SCHOOL_EMAIL }}
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <span class="icon">🕘</span>
+                <span class="text">
+                    <strong>Office Hours:</strong> {{ SCHOOL_OFFICE_HOURS }}
+                </span>
+            </div>
+
+        </div>
+
+        <hr class="contact-divider">
+
+        <h2 class="page-title">Send Us a Message</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea rows="4" placeholder="Your Message"></textarea>
+            <button type="button" class="btn">Send Message</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

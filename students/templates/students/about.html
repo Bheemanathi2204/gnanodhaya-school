@@ -1,0 +1,20 @@
+{% extends 'students/base.html' %}
+{% load static %}
+{% block content %}
+<h2>About School</h2>
+<p>This school was established in 2009</p>
+<p>School has 100 students</p>
+<h2 class="section-title">School Activities</h2>
+
+<div class="about-images">
+    {% for img in images %}
+        <div class="about-img-card">
+            <img src="{{ img.image.url }}" alt="{{ img.title }}">
+            {% if img.title %}
+                <p>{{ img.title }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

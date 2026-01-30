@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Receipt</title>
+</head>
+<body>
+
+<h2>🧾 Payment Receipt</h2>
+
+<p><strong>Student:</strong> {{ payment.student.user.username }}</p>
+<p><strong>Payment ID:</strong> {{ payment.payment_id }}</p>
+<p><strong>Amount Paid:</strong> ₹ {{ payment.amount }}</p>
+<p><strong>Status:</strong> {{ payment.status }}</p>
+<p><strong>Date:</strong> {{ payment.paid_on }}</p>
+
+<button onclick="window.print()">Download / Print</button>
+
+</body>
+</html>

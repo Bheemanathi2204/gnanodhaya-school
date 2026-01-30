@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Add Homework</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+
+<div class="teacher-page">
+
+    <div class="teacher-card">
+        <h2>📘 Add Homework</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.date.label_tag }}
+                {{ form.date }}
+            </div>
+
+            <div class="form-group">
+                {{ form.student_class.label_tag }}
+                {{ form.student_class }}
+            </div>
+
+            <div class="form-group">
+                {{ form.section.label_tag }}
+                {{ form.section }}
+            </div>
+
+            <div class="form-group">
+                {{ form.subject.label_tag }}
+                {{ form.subject }}
+            </div>
+
+            <div class="form-group">
+                {{ form.details.label_tag }}
+                {{ form.details }}
+            </div>
+
+            <button type="submit" class="teacher-btn">Save Homework</button>
+        </form>
+
+        <a href="{% url 'teacher_dashboard' %}" class="back-link">← Back to Dashboard</a>
+    </div>
+
+</div>
+
+</body>
+</html>
