@@ -220,7 +220,7 @@ a:hover {
 }
 .hero-section {
     height: 400px;
-    background-image: url("/static/students/images/school_banner.png");
+    background-image: url("images/school_banner.png");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -651,7 +651,7 @@ td {
 /* ===== LOGIN PAGE BACKGROUND ===== */
 .login-page-bg {
     min-height: 100vh;
-    background: url("/static/students/images/login_bg.jpg") no-repeat center center/cover;
+    background: url("images/login_bg.jpg") no-repeat center center/cover;
     position: relative;
 }
 
@@ -752,7 +752,7 @@ td {
 /* contact page background */
 .contact-hero {
     min-height: 90vh;
-    background-image: url("/static/students/images/contact_bg.jpg");
+    background-image: url("images/contact_bg.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -787,7 +787,7 @@ td {
 .attendance-page {
     min-height: 100vh;
     padding: 40px 20px;
-    background-image: url("/static/students/images/attendance_bg.jpg");
+    background-image: url("images/attendance_bg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -817,7 +817,7 @@ td {
 .marks-page {
     min-height: 100vh;
     padding: 40px 20px;
-    background-image: url("/static/students/images/marks_bg.jpg");
+    background-image: url("images/marks_bg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -868,7 +868,7 @@ td {
 .homework-page {
     padding: 40px;
     min-height: 80vh;
-    background-image: url("/static/students/images/homework_bg.jpg");
+    background-image: url("images/homework_bg.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
