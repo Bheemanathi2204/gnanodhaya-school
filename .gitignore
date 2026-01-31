@@ -1,0 +1,6 @@
+pip
+__pycache__/
+*.pyc
+.env
+school.log
+db.sqlite3
